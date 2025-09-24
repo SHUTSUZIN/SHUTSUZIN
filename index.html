@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PAYMENT BY RIIWWXZ STORE</title>
+    <style>
+        /* Reset dan Styling Dasar */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #0a0a0a;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 500px;
+            background: linear-gradient(145deg, #0f0f0f, #1a1a1a);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            border: 1px solid #1e3a5f;
+        }
+        
+        /* Header */
+        .header {
+            background: linear-gradient(90deg, #102a43, #1e3a5f);
+            padding: 25px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(30, 144, 255, 0.1) 0%, transparent 70%);
+            animation: pulse 8s infinite linear;
+        }
+        
+        @keyframes pulse {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .header h1 {
+            font-size: 24px;
+            margin-bottom: 5px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header p {
+            font-size: 14px;
+            opacity: 0.8;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Payment Methods */
+        .payment-methods {
+            padding: 20px;
+        }
+        
+        .method {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            border: 1px solid rgba(30, 58, 95, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .method:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(30, 144, 255, 0.2);
+            border-color: rgba(30, 144, 255, 0.5);
+        }
+        
+        .method-header {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            background: rgba(16, 42, 67, 0.3);
+            cursor: pointer;
+        }
+        
+        .method-icon {
+            width: 40px;
+            height: 40px;
+            background: #1e3a5f;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 15px;
+            font-weight: bold;
+            color: #1e90ff;
+        }
+        
+        .method-name {
+            font-weight: 600;
+            font-size: 16px;
+        }
+        
+        .method-content {
+            padding: 0 15px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+        
+        .method.active .method-content {
+            padding: 15px;
+            max-height: 200px;
+        }
+        
+        .method-details {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .method-details:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .method-label {
+            font-weight: 600;
+            color: #1e90ff;
+        }
+        
+        .method-value {
+            font-family: monospace;
+            font-size: 14px;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 3px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        
+        .method-value:hover {
+            background: rgba(30, 144, 255, 0.2);
+        }
+        
+        /* Saluran Menu */
+        .saluran-menu {
+            margin-top: 20px;
+            text-align: center;
+            padding: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .saluran-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(90deg, #1e3a5f, #1e90ff);
+            color: white;
+            text-decoration: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(30, 144, 255, 0.3);
+        }
+        
+        .saluran-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(30, 144, 255, 0.4);
+            background: linear-gradient(90deg, #1e90ff, #1e3a5f);
+        }
+        
+        .saluran-btn i {
+            margin-right: 8px;
+            font-size: 18px;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 15px;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.6);
+            background: rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Animasi untuk nomor yang disalin */
+        .copied {
+            animation: copied 0.5s ease;
+        }
+        
+        @keyframes copied {
+            0% { background: rgba(30, 144, 255, 0.5); }
+            100% { background: rgba(0, 0, 0, 0.3); }
+        }
+        
+        /* Responsif */
+        @media (max-width: 480px) {
+            .container {
+                border-radius: 10px;
+            }
+            
+            .header {
+                padding: 20px 15px;
+            }
+            
+            .header h1 {
+                font-size: 20px;
+            }
+            
+            .payment-methods {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Payment Gateway</h1>
+            <p>Pilih metode pembayaran yang tersedia</p>
+        </div>
+        
+        <div class="payment-methods">
+            <!-- DANA -->
+            <div class="method" id="dana">
+                <div class="method-header">
+                    <div class="method-icon">D</div>
+                    <div class="method-name">DANA</div>
+                </div>
+                <div class="method-content">
+                    <div class="method-details">
+                        <span class="method-label">Nomor:</span>
+                        <span class="method-value" onclick="copyToClipboard('083897762065', this)">083897762065</span>
+                    </div>
+                    <div class="method-details">
+                        <span class="method-label">Atas Nama:</span>
+                        <span class="method-value">DORI S****L HU***I</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- OVO -->
+            <div class="method" id="ovo">
+                <div class="method-header">
+                    <div class="method-icon">O</div>
+                    <div class="method-name">OVO</div>
+                </div>
+                <div class="method-content">
+                    <div class="method-details">
+                        <span class="method-label">Nomor:</span>
+                        <span class="method-value" onclick="copyToClipboard('083841201044', this)">083841201044</span>
+                    </div>
+                    <div class="method-details">
+                        <span class="method-label">Atas Nama:</span>
+                        <span class="method-value">RIIWWXZ STORE</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- GOPAY -->
+            <div class="method" id="gopay">
+                <div class="method-header">
+                    <div class="method-icon">G</div>
+                    <div class="method-name">GOPAY</div>
+                </div>
+                <div class="method-content">
+                    <div class="method-details">
+                        <span class="method-label">Nomor:</span>
+                        <span class="method-value" onclick="copyToClipboard('082128399932', this)">082128399932</span>
+                    </div>
+                    <div class="method-details">
+                        <span class="method-label">Atas Nama:</span>
+                        <span class="method-value">DORI S****L HU***I</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- BANK -->
+            <div class="method" id="bank">
+                <div class="method-header">
+                    <div class="method-icon">B</div>
+                    <div class="method-name">BANK</div>
+                </div>
+                <div class="method-content">
+                    <div class="method-details">
+                        <span class="method-label">Nomor Rekening:</span>
+                        <span class="method-value" onclick="copyToClipboard('901068812599', this)">901068812599</span>
+                    </div>
+                    <div class="method-details">
+                        <span class="method-label">Atas Nama:</span>
+                        <span class="method-value">DORI S****L HU***I</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="saluran-menu">
+            <a href="https://t.me/Riiwwzx_Reall" class="saluran-btn" target="_blank">
+                <i>📱</i> Saluran Telegram
+            </a>
+        </div>
+        
+        <div class="footer">
+            <p>© 2023 Payment Gateway. Pastikan untuk konfirmasi setelah melakukan pembayaran.</p>
+        </div>
+    </div>
+
+    <script>
+        // Fungsi untuk toggle metode pembayaran
+        document.querySelectorAll('.method-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const method = header.parentElement;
+                method.classList.toggle('active');
+            });
+        });
+        
+        // Fungsi untuk menyalin teks ke clipboard
+        function copyToClipboard(text, element) {
+            navigator.clipboard.writeText(text).then(() => {
+                // Animasi feedback
+                element.classList.add('copied');
+                setTimeout(() => {
+                    element.classList.remove('copied');
+                }, 500);
+            }).catch(err => {
+                console.error('Gagal menyalin teks: ', err);
+            });
+        }
+        
+        // Buka metode pertama secara default
+        document.getElementById('dana').classList.add('active');
+    </script>
+</body>
+</html>
